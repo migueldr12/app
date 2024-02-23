@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item
+      *ngFor="let registro of registros"
+      [routerLink]="['/registros', registro.id]"
+    >
+      <ion-avatar slot="start">
+        <ion-img [src]="registro.foto"></ion-img>
+      </ion-avatar>
+      <ion-label> {{registro.nombre}} </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
