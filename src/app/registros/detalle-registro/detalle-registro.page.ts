@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../service.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle-registro',
@@ -14,7 +15,8 @@ export class DetalleRegistroPage implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private registrosService: ServiceService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -25,8 +27,21 @@ export class DetalleRegistroPage implements OnInit {
       console.log(this.registro);
     });
   }
-  deleteRegistro() {
-    this.registrosService.deleteRegistro(this.registro.id);
-    this.router.navigate(['registros']);
+  async deleteRegistro() {
+    const alertElement = await this.alertController.create({
+      header: '¿Estás seguro de eliminar?',
+      message: 'Se eliminará el registro',
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            this.registrosService.deleteRegistro(this.registro.id);
+            this.router.navigate(['/registros']);
+          },
+        },
+      ],
+    });
+    await alertElement.present();
   }
 }

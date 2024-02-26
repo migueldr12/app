@@ -37,9 +37,17 @@ export class ServiceService {
       ...this.registros.find((registro) => registro.id === registroId),
     };
   }
-
   //Elimina registro
   deleteRegistro(id: string) {
     this.registros = this.registros.filter((registro) => registro.id !== id);
+  }
+  // Añadir un registro
+  addRegistro(nombre: string, foto: string) {
+    this.registros.push({
+      nombre,
+      foto,
+      observaciones: [],
+      id: this.registros.length + 1 + '',
+    });
   }
 }

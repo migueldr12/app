@@ -31,6 +31,13 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'new-registro',
+    loadChildren: () =>
+      import('./registros/registros-add/registros-add.module').then(
+        (m) => m.RegistrosAddPageModule
+      ),
+  },
 ];
 
 @NgModule({
