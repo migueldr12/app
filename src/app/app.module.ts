@@ -11,6 +11,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -19,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
     AppRoutingModule,
     MatButtonModule,
     MatInputModule,
+    HttpClientModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
